@@ -35,7 +35,7 @@ Take note of how JSON-like the strings are... this may make your job easier.
 
 
 TO TEST:
-You can run this example by running `node problems/problem-1` in your terminal,
+You can run this example by running `node problems/problem-2` in your terminal,
 or you can run all by running `node run-all`.
 */
 
@@ -47,8 +47,18 @@ const strings = [
 	'"firstName":"Palpatine","lastName":"null","age":86,"occupation":"Emperor","homePlanet":"Naboo"',
 	'"firstName":"Qui-Gon","lastName":"Jinn","age":60,"occupation":"Jedi","homePlanet":"Coruscant"',
 	'"firstName":"Mace","lastName":"Windu","age":53,"occupation":"Jedi","homePlanet":"Haruun Kal"'
-]
+  ];
 
 const jedi = strings // append your code here
+	.map(str => {
+		try{
+			const obj = JSON.parse(`{${str}}`);
+			return obj.occupation === 'Jedi' ? obj : null;
+		} catch (error) {
+			return null;
+		}
+	})
+
+	.filter(Boolean);
 
 test("Problem 2", jedi)
